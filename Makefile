@@ -1,20 +1,33 @@
-# Author: Erik Anderson 
-# Date Created: 03/06/2020
+# Author: Erik Anderson
+# Date Created: 02/27/2020
+
+TESTS=tests
+SRC=sim
+DIRS=$(SRC) $(TESTS)
 
 default: test
 
-# Lints toolbox-vlsi-tools directory recursively
+# Lints pyproject directory recursively
 lint:
-	pylint toolbox-vlsi-tools tests
+	pylint $(DIRS) 
 
-# Formats toolbox-vlsi-tools directory recursively
+# Formats pyproject directory recursively
 format:
-	yapf -i -r toolbox-vlsi-tools tests
+	yapf -i -r $(DIRS) 
 
-# Type checks toolbox-vlsi-tools directory recursively
+# Type checks pyproject directory recursively
 type:
-	mypy toolbox-vlsi-tools tests
+	mypy $(DIRS) 
 
-# Runs all tests in tests directory 
+# Runs all tests in tests directory
 test:
-	pytest -v tests
+	pytest $(TESTS) -v
+
+# Runs ctags 
+tags:
+	ctags -R .
+
+clean:
+	rm -rf build/ tags
+
+.PHONY: lint format type test clean

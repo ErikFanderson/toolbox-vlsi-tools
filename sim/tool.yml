@@ -13,7 +13,7 @@ properties:
     schema: "list(str())"
   filelist:
     description: "List of rtl and simulation source files."
-    default: [] 
+    default: null 
     schema: "list(str())"
   sdf:
     description: "Standard Delay Format (SDF) file for delay annotations."
