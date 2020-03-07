@@ -29,7 +29,6 @@ class SimTool(Tool):
     @abstractmethod
     def prep_sim(self):
         """Prepare simulation to be run"""
-
     @abstractmethod
     def run_sim(self):
         """Run the simulation"""
