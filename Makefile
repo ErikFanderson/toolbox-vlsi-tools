@@ -3,6 +3,7 @@
 
 TESTS=tests
 SRC=sim
+SRC+=syn
 DIRS=$(SRC) $(TESTS)
 
 default: test
