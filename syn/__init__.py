@@ -20,4 +20,4 @@ from toolbox.logger import LogLevel
 class SynTool(Tool):
     """Synthesis toolbox tool"""
     def __init__(self, db: Database, log: Callable[[str, LogLevel], None]):
-        Tool.__init__(self, db, log)
+        super(SynTool, self).__init__(self, db, log)

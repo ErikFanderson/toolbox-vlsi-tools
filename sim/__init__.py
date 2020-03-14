@@ -20,7 +20,7 @@ from toolbox.logger import LogLevel
 class SimTool(Tool):
     """Simulation toolbox tool"""
     def __init__(self, db: Database, log: Callable[[str, LogLevel], None]):
-        Tool.__init__(self, db, log)
+        super(SimTool, self).__init__(self, db, log)
 
     def steps(self) -> List[Callable[[], None]]:
         """Two simple sim steps prep and run"""
