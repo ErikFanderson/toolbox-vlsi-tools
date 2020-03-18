@@ -1,20 +1,12 @@
 # Name must match the class name in __init__.py
-name: SimTool 
+name: sim 
 
 # Dictionary containg all properties/attributes required by the tool
 properties:
-  top_module:
-    description: "Name of the top level module/testbench to be run."
+  testbench:
+    description: "Testbench to be run by simulation tool."
     default: null
     schema: "str()"
-  defines:
-    description: "List of source files containing defines."
-    default: [] 
-    schema: "list(str())"
-  filelist:
-    description: "List of rtl and simulation source files."
-    default: null 
-    schema: "list(str())"
   sdf:
     description: "Standard Delay Format (SDF) file for delay annotations."
     default: null

@@ -1,0 +1,17 @@
+# Name must match the class name in __init__.py
+name: vlsi 
+
+# Dictionary containg all properties/attributes required by the tool
+properties:
+  top_module:
+    description: "Name of the top level module/testbench"
+    default: null
+    schema: "str()"
+  defines:
+    description: "List of source files containing defines"
+    default: [] 
+    schema: "list(str())"
+  filelist:
+    description: "List of rtl and simulation source files."
+    default: null 
+    schema: "list(str())"

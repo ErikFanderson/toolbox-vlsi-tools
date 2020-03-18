@@ -1,0 +1,9 @@
+# Name must match the class name in __init__.py
+name: syn 
+
+# Dictionary containing all properties/attributes required by the tool
+properties:
+  options:
+    description: "Command line options passed directly to executable. Strings are passed raw to binary."
+    default: []
+    schema: "list(str())"

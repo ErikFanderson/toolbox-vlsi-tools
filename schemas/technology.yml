@@ -1,0 +1,17 @@
+# Name must match the class name in __init__.py
+name: technology 
+
+# Dictionary containg all properties/attributes required by the tool
+properties:
+  views:
+    description: "Includes libs, lefs, and sdc files"
+    default: null
+    schema: "list(include('view'))"
+schema_includes:
+  view:
+    name: "str()"
+    libs: "list(file())"
+    lefs: "list(file())"
+    sdc_mode: "str()"
+    cap_file_type: "enum('qrc', 'cap_table')"
+    cap_file: "file()"
