@@ -19,3 +19,11 @@ properties:
     description: "List of testbench simulation source files."
     default: [] 
     schema: "list(file())"
+  time_unit:
+    description: "Sets global time unit for all vlsi tools. Individual tools may have overrides."
+    default: "ps"
+    schema: "enum('fs', 'ps', 'ns', 'us', 'ms', 'ks', 'Ms')"
+  load_unit:
+    description: "Sets global capacitance unit for all vlsi tools. Individual tools may have overrides."
+    default: "fF"
+    schema: "enum('fF', 'pF', 'nF', 'uF', 'mF', 'kF', 'MF')"
