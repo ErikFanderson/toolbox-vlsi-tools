@@ -10,8 +10,12 @@ properties:
   defines:
     description: "List of source files containing defines"
     default: [] 
-    schema: "list(str())"
+    schema: "list(file())"
   filelist:
-    description: "List of rtl and simulation source files."
+    description: "List of rtl source files."
     default: null 
-    schema: "list(str())"
+    schema: "list(file())"
+  testbenches:
+    description: "List of testbench simulation source files."
+    default: [] 
+    schema: "list(file())"

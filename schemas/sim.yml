@@ -10,7 +10,7 @@ properties:
   sdf:
     description: "Standard Delay Format (SDF) file for delay annotations."
     default: null
-    schema: "str(required=False)"
+    schema: "file(required=False)"
   options:
     description: "Command line options passed directly to executable. Strings are passed raw to binary."
     default: null 

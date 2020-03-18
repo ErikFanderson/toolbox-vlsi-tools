@@ -3,13 +3,16 @@ name: technology
 
 # Dictionary containg all properties/attributes required by the tool
 properties:
+  custom_lefs:
+    description: "Custom lefs to be used in synthesis and place and route"
+    default: [] 
+    schema: "list(file())"
   views:
-    description: "Includes libs, lefs, and sdc files"
-    default: null
-    schema: "list(include('view'))"
+    description: "Defines all technology views w/ libs, lefs, mode, and pex info"
+    default: {} 
+    schema: "map(include('view'))"
 schema_includes:
   view:
-    name: "str()"
     libs: "list(file())"
     lefs: "list(file())"
     sdc_mode: "str()"
