@@ -8,9 +8,13 @@ properties:
     default: null
     schema: "map(include('view'))"
   physical_cells:
-    description: "Cells w/o timing libraries. Tie cells, well taps, filler cells, etc..."
-    default: {custom: null, well_tap: null, filler: null, tie: null}
+    description: "Cells w/o timing that are in std cell lib. Tie cells, well taps, filler cells, etc..."
+    default: {well_tap: null, filler: null, tie_high: null, tie_low: null}
     schema: "include('physical_cells')"
+  custom_cells:
+    description: "Dict of custom cells w/ lef and gds (will need to be more comprehensive at some point)"
+    default: null
+    schema: "map(include('custom_cell'), required=False)"
 schema_includes:
   view:
     libs: "list(file())"
@@ -20,20 +24,10 @@ schema_includes:
     cap_file_type: "enum('qrc', 'cap_table')"
     cap_file: "file()"
   physical_cells:
-    custom: "map(include('custom_cell'), required=False)"
-    well_tap: "map(include('well_tap_cell'), required=False)"
-    filler: "map(include('filler_cell'), required=False)"
-    tie: "map(include('tie_cell'), required=False)"
+    well_tap: "list(str(), required=False)"
+    filler: "list(str(), required=False)"
+    tie_high: "list(str(), required=False)"
+    tie_low: "list(str(), required=False)"
   custom_cell:
-    lef: "file()"
-    gds: "file()"
-  well_tap_cell:
-    lef: "file()"
-    gds: "file()"
-  filler_cell:
-    lef: "file()"
-    gds: "file()"
-  tie_cell:
-    type: "enum('high', 'low')"
     lef: "file()"
     gds: "file()"
