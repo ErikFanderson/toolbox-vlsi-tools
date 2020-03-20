@@ -3,6 +3,14 @@ name: technology
 
 # Dictionary containing all properties/attributes required by the tool
 properties:
+  node:
+    description: "Defines process node of technology (e.g. 45, 90, 180, etc...)"
+    default: null 
+    schema: "int(min=1)"
+  core_site:
+    description: "Defines site for core area."
+    default: null 
+    schema: "str()"
   views:
     description: "Defines all technology views w/ libs, lefs, mode, and pex info"
     default: null

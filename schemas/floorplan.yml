@@ -1,0 +1,73 @@
+# Name must match the class name in __init__.py
+name: floorplan 
+
+# Dictionary containing all properties/attributes required by the tool
+properties:
+  #---------------------------------------------------------------------
+  # Create_floorplan command (TODO make this more tool agnostic) 
+  #---------------------------------------------------------------------
+  width:
+    description: "Width of block/die (in microns)"
+    default: 500 
+    schema: "num(min=0.0)"
+  height:
+    description: "Height of block/die (in microns)"
+    default: 500 
+    schema: "num(min=0.0)"
+  left_margin:
+    description: "Margin from left edge of core to IO or die edge (depends on core_margins_by attr)"
+    default: 100 
+    schema: "num(min=0.0)"
+  right_margin:
+    description: "Margin from right edge of core to IO or die edge (depends on core_margins_by attr)"
+    default: 100 
+    schema: "num(min=0.0)"
+  bottom_margin:
+    description: "Margin from bottom of core to IO or die edge (depends on core_margins_by attr)"
+    default: 100 
+    schema: "num(min=0.0)"
+  top_margin:
+    description: "Margin from top of core to IO or die edge (depends on core_margins_by attr)"
+    default: 100 
+    schema: "num(min=0.0)"
+  die_size_by_io_height:
+    description: "Specifies whether the max or min I/O height is used for die size calculation."
+    default: 'max'
+    schema: "enum('min', 'max')"
+  floorplan_origin:
+    description: "Specifies whether the origin is in the center or lower left hand corner."
+    default: 'llcorner'
+    schema: "enum('center', 'llcorner')"
+  core_margins_by:
+    description: "Specifies whether the core margins are by I/O or die edge."
+    default: 'die'
+    schema: "enum('io', 'die')"
+  match_to_site:
+    description: "Resizes die area to be an integer multiple of IO or core site."
+    default: false
+    schema: "bool()"
+  #---------------------------------------------------------------------
+  # Place cells (TODO make this more tool agnostic) 
+  #---------------------------------------------------------------------
+  hard_macros:
+    description: "List of hard macros to be inserted into design"
+    default: [] 
+    schema: "list(include('hard_macro'))"
+schema_includes:
+  hard_macro:
+    inst: "str()"
+    x: "num(min=0.0)"
+    y: "num(min=0.0)"
+    orient: "enum('r0', 'r90', 'r180', 'r270', 'mx', 'my', 'mx90', 'my90')"
+    status: "enum('fixed', 'placed', 'soft_fixed')"
+    place_halo: "include('place_halo', required=False)"
+    route_halo: "include('route_halo', required=False)"
+  place_halo:
+    top: "num(min=0.0)"
+    bottom: "num(min=0.0)"
+    left: "num(min=0.0)"
+    right: "num(min=0.0)"
+  route_halo:
+    space: "num(min=0.0)"
+    bottom_layer: "str()"
+    top_layer: "str()"
