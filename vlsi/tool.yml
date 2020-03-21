@@ -1,5 +1,6 @@
 # Name must match the class name in __init__.py
-name: vlsi 
+tool: VLSITool 
+namespace: vlsi 
 
 # Dictionary containg all properties/attributes required by the tool
 properties:

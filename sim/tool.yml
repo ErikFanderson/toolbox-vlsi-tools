@@ -1,5 +1,6 @@
 # Name must match the class name in __init__.py
-name: sim 
+tool: SimTool 
+namespace: sim 
 
 # Dictionary containg all properties/attributes required by the tool
 properties:

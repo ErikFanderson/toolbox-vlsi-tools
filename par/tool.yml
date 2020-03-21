@@ -1,5 +1,6 @@
 # Name must match the class name in __init__.py
-name: par 
+tool: PARTool 
+namespace: par 
 
 # Dictionary containg all properties/attributes required by the tool
 properties:

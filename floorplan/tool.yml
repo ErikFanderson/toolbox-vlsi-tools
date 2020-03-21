@@ -1,5 +1,6 @@
 # Name must match the class name in __init__.py
-name: floorplan 
+tool: FloorplanTool 
+namespace: floorplan 
 
 # Dictionary containing all properties/attributes required by the tool
 properties:
