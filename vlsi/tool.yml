@@ -8,18 +8,10 @@ properties:
     description: "Name of the top level module/testbench"
     default: null
     schema: "str()"
-  defines:
-    description: "List of source files containing defines"
-    default: [] 
-    schema: "list(file())"
   filelist:
-    description: "List of rtl source files."
-    default: null 
-    schema: "list(file())"
-  testbenches:
-    description: "List of testbench simulation source files."
-    default: [] 
-    schema: "list(file())"
+    description: "RTL, defines, testbench, and vlog-models."
+    default: {rtl: [], defines: [], testbenches: [], models: []}
+    schema: "include('filelist')"
   time_unit:
     description: "Sets global time unit for all vlsi tools. Individual tools may have overrides."
     default: "ps"
@@ -28,3 +20,9 @@ properties:
     description: "Sets global capacitance unit for all vlsi tools. Individual tools may have overrides."
     default: "fF"
     schema: "enum('fF', 'pF', 'nF', 'uF', 'mF', 'kF', 'MF')"
+schema_includes:
+  filelist:
+    rtl: "list(file())"
+    defines: "list(file())"
+    testbenches: "list(file())"
+    models: "list(file())"
