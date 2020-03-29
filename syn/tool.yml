@@ -8,3 +8,25 @@ properties:
     description: "Command line options passed directly to executable. Strings are passed raw to binary."
     default: []
     schema: "list(str())"
+  setup_view:
+    description: "Name of view to use for setup timing analysis"
+    default: null
+    schema: "str()"
+  hold_view:
+    description: "Name of view to use for hold timing analysis"
+    default: null
+    schema: "str()"
+  modes:
+    description: "List of constraint modes to be translated into SDC files."
+    default: null 
+    schema: "list(include('mode'))"
+schema_includes:
+  mode:
+    name: "str()"
+    clocks: "list(include('clock'))"
+  clock:
+    name: "str()"
+    period: "num(min=0)"
+    uncertainty: "num(min=0, required=False)"
+    domain: "str(required=False)"
+    derived: "bool(required=False)"

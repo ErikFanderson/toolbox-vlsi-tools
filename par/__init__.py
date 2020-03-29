@@ -10,8 +10,11 @@
 # Imports - 3rd party packages
 
 # Imports - local source
-from toolbox.tool import Tool
+from vlsi import VLSITool
+from technology import TechTool
+from floorplan import FloorplanTool
 
-class PARTool(Tool):
+
+class PARTool(FloorplanTool, VLSITool, TechTool):
     """Basic simulation tool"""
     pass

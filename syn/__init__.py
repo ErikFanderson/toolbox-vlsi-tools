@@ -10,8 +10,10 @@
 # Imports - 3rd party packages
 
 # Imports - local source
-from toolbox.tool import Tool
+from vlsi import VLSITool
+from technology import TechTool
 
-class SynTool(Tool):
+
+class SynTool(VLSITool, TechTool):
     """Basic simulation tool"""
     pass
