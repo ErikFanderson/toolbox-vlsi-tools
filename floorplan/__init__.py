@@ -6,7 +6,7 @@
 """Docstring for module __init__.py"""
 
 # Imports - standard library
-from typing import List
+from typing import List, Optional
 
 # Imports - 3rd party packages
 import yaml
@@ -38,8 +38,8 @@ class HardMacro:
     y: int
     orient: str
     status: str
-    place_halo: PlaceHalo
-    route_halo: RouteHalo
+    place_halo: Optional[PlaceHalo] = None
+    route_halo: Optional[RouteHalo] = None
 
 
 class FloorplanTool(Tool):
