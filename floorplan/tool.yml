@@ -54,7 +54,17 @@ properties:
     description: "List of hard macros to be inserted into design"
     default: [] 
     schema: "list(include('hard_macro'))"
+  2d_hard_macros:
+    description: "List of 2d arrays of macros"
+    default: []
+    schema: "list(include('2d_base_hard_macro'))"
 schema_includes:
+  2d_base_hard_macro:
+    base_macro: "include('hard_macro')"
+    num_rows: "int(min=1)"
+    num_columns: "int(min=1)"
+    row_sep: "num(min=0)"
+    column_sep: "num(min=0)"
   hard_macro:
     inst: "str()"
     x: "num(min=0.0)"
