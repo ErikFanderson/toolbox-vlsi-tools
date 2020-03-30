@@ -54,12 +54,43 @@ properties:
     description: "List of hard macros to be inserted into design"
     default: [] 
     schema: "list(include('hard_macro'))"
-  2d_hard_macros:
-    description: "List of 2d arrays of macros"
+  hard_macro_arrays:
+    description: "List of Macro arrays"
     default: []
-    schema: "list(include('2d_base_hard_macro'))"
+    schema: "list(include('hard_macro_array'))"
+  bumps:
+    description: "List of bumps to be inserted into design"
+    default: [] 
+    schema: "list(include('bump'))"
+  bump_arrays:
+    description: "List of Macro arrays"
+    default: []
+    schema: "list(include('bump_array'))"
+  bump_netlist:
+    description: "key, value pairs that specify bump name and net name"
+    default: {}
+    schema: "map(include('bump_net'))"
+  bump_block_layers:
+    description: "List of layer names that should be included in bump routing blockage"
+    default: []
+    schema: "list(str())"
 schema_includes:
-  2d_base_hard_macro:
+  bump_net:
+    net: "str()"
+    pg: "bool()"
+  bump_array:
+    base_bump: "include('bump')"
+    num_rows: "int(min=1)"
+    num_columns: "int(min=1)"
+    row_sep: "num(min=0)"
+    column_sep: "num(min=0)"
+  bump:
+    name: "str()"
+    cell: "str()"
+    x: "num(min=0.0)"
+    y: "num(min=0.0)"
+    orient: "enum('r0', 'r90', 'r180', 'r270', 'mx', 'my', 'mx90', 'my90', required=False)"
+  hard_macro_array:
     base_macro: "include('hard_macro')"
     num_rows: "int(min=1)"
     num_columns: "int(min=1)"
