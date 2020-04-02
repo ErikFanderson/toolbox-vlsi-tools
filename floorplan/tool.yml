@@ -48,7 +48,7 @@ properties:
     default: false
     schema: "bool()"
   #---------------------------------------------------------------------
-  # Place cells (TODO make this more tool agnostic) 
+  # Hard Macros 
   #---------------------------------------------------------------------
   hard_macros:
     description: "List of hard macros to be inserted into design"
@@ -58,6 +58,17 @@ properties:
     description: "List of Macro arrays"
     default: []
     schema: "list(include('hard_macro_array'))"
+  #---------------------------------------------------------------------
+  # Bump 
+  #---------------------------------------------------------------------
+  bump_global_offset_x:
+    description: "Global offset for bumps in x (in micrometers)"
+    default: 0.0 
+    schema: "num()"
+  bump_global_offset_y:
+    description: "Global offset for bumps in y (in micrometers)"
+    default: 0.0 
+    schema: "num()"
   bumps:
     description: "List of bumps to be inserted into design"
     default: [] 
@@ -69,15 +80,12 @@ properties:
   bump_netlist:
     description: "key, value pairs that specify bump name and net name"
     default: {}
-    schema: "map(include('bump_net'))"
+    schema: "map('str')"
   bump_block_layers:
     description: "List of layer names that should be included in bump routing blockage"
     default: []
     schema: "list(str())"
 schema_includes:
-  bump_net:
-    net: "str()"
-    pg: "bool()"
   bump_array:
     base_bump: "include('bump')"
     num_rows: "int(min=1)"
@@ -90,6 +98,8 @@ schema_includes:
     x: "num(min=0.0)"
     y: "num(min=0.0)"
     orient: "enum('r0', 'r90', 'r180', 'r270', 'mx', 'my', 'mx90', 'my90', required=False)"
+    net: "str(required=False)"
+    pg: "bool(required=False)"
   hard_macro_array:
     base_macro: "include('hard_macro')"
     num_rows: "int(min=1)"

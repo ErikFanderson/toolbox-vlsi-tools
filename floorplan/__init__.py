@@ -13,6 +13,7 @@ import yaml
 
 # Imports - local source
 from toolbox.tool import Tool
+from toolbox.logger import LogLevel
 from dataclasses import dataclass
 
 
@@ -20,10 +21,9 @@ from dataclasses import dataclass
 class Bump:
     name: str
     cell: str
-    pg: bool
-    net: str
     x: float
     y: float
+    net: Optional[str] = None
     orient: str = "r0"
 
 
@@ -55,6 +55,10 @@ class HardMacro:
 
 class FloorplanTool(Tool):
     """Basic simulation tool"""
+
+    #--------------------------------------------------------------------------
+    # Hard macro methods
+    #--------------------------------------------------------------------------
     def generate_macro_arrays(self,
                               hard_macro_arrays: List[dict]) -> List[dict]:
         """base name should have two {} in them"""
@@ -71,25 +75,56 @@ class FloorplanTool(Tool):
                             orient=base_macro.orient,
                             status=base_macro.status,
                             place_halo=base_macro.place_halo,
-                            route_halo=base_macro.route_halo).__dict__)
+                            route_halo=base_macro.route_halo))
         return macros
 
-    def generate_bump_arrays(self, bump_netlist: dict,
-                             bump_arrays: List[dict]) -> List[dict]:
+    #--------------------------------------------------------------------------
+
+    #--------------------------------------------------------------------------
+    # Bump methods
+    #--------------------------------------------------------------------------
+    def create_bump(self, b: dict, netlist: dict, offset_x: float,
+                    offset_y: float):
+        """
+        :param b bump dictionary
+        :param netlist bump netlist
+        :param offset_x x offset value for bumps 
+        :param offset_y y offset value for bumps 
+        """
+        fplan = self.get_namespace("FloorplanTool")
+        b.update({"x": b["x"] + offset_x})
+        b.update({"y": b["y"] + offset_y})
+        if "net" in b:
+            return Bump(**b)
+        elif b["name"] in netlist:
+            return Bump(**b, net=netlist[b["name"]])
+        else:
+            self.log(f'Bump "{b["name"]}" not in {fplan}.bump_netlist',
+                     LogLevel.ERROR)
+
+    def generate_bumps(self, bumps: List[dict], bump_arrays: List[dict],
+                       netlist: dict, offset_x: float,
+                       offset_y: float) -> List[dict]:
         """base name should have two {} in them"""
-        bumps = []
+        # Single bumps
+        bumps = [
+            self.create_bump(b, netlist, offset_x, offset_y) for b in bumps
+        ]
+        # Bump arrays
         for bump_array in bump_arrays:
-            base_bump = Bump(**bump_array["base_bump"],
-                             net="fake_net",
-                             pg=False)
+            bb = bump_array["base_bump"]
             for row in range(bump_array["num_rows"]):
                 for col in range(bump_array["num_columns"]):
-                    bump_name = base_bump.name.format(r=row, c=col)
+                    b_dict = {
+                        "name": bb["name"].format(r=row, c=col),
+                        "x": bb["x"] + (bump_array["column_sep"] * col),
+                        "y": bb["y"] + (bump_array["row_sep"] * row),
+                        "cell": bb["cell"]
+                    }
+                    if "net" in bb:
+                        b_dict.update({"net": bb["net"].format(r=row, c=col)})
                     bumps.append(
-                        Bump(name=bump_name,
-                             x=base_bump.x + (bump_array["column_sep"] * col),
-                             y=base_bump.y + (bump_array["row_sep"] * row),
-                             cell=base_bump.cell,
-                             pg=bump_netlist[bump_name]["pg"],
-                             net=bump_netlist[bump_name]["net"]))
+                        self.create_bump(b_dict, netlist, offset_x, offset_y))
         return bumps
+
+    #--------------------------------------------------------------------------
