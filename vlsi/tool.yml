@@ -20,9 +20,13 @@ properties:
     description: "Sets global capacitance unit for all vlsi tools. Individual tools may have overrides."
     default: "fF"
     schema: "enum('fF', 'pF', 'nF', 'uF', 'mF', 'kF', 'MF')"
-  pg_nets:
+  pwr_nets:
+    description: "List of power nets in design"
+    default: ["VDD"]
+    schema: "list(str())"
+  gnd_nets:
     description: "List of power and ground nets in design"
-    default: ["VDD", "VSS", "GND"]
+    default: ["VSS", "GND"]
     schema: "list(str())" 
 schema_includes:
   filelist:
