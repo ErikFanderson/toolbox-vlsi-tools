@@ -92,7 +92,30 @@ properties:
     description: "Tap cell interval. If not provided tap cells will not be included."
     default: null 
     schema: "num(min=0.0, required=False)"
+  #---------------------------------------------------------------------
+  # Power straps and rings 
+  #---------------------------------------------------------------------
+  power_strap_grids:
+    description: "List of power strap grid objects."
+    default: null
+    schema: "include('power_strap_grid', required=False)"
 schema_includes:
+  power_strap_grid:
+    direction: "enum('horizontal', 'vertical')"
+    layer: "str()"
+    nets: "list(str())"
+    net_spacing: "num(min=0.0)"
+    net_widths: "list(num(min=0.0))"
+    area: "enum(include('rectangle'), 'full')"
+    block_ring_bottom_layer: "str()"
+    block_ring_top_layer: "str()"
+    pad_core_ring_bottom_layer: "str()"
+    pad_core_ring_top_layer: "str()"
+  rectangle:
+    width: "num(min=0.0)"
+    height: "num(min=0.0)"
+    x: "num(min=0.0)"
+    y: "num(min=0.0)"
   bump_array:
     base_bump: "include('bump')"
     num_rows: "int(min=1)"

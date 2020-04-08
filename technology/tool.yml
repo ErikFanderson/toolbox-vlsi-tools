@@ -20,10 +20,18 @@ properties:
     description: "Cells w/o timing that are in std cell lib. Tie cells, well taps, filler cells, etc..."
     default: {well_tap: null, filler: null, tie_high: null, tie_low: null}
     schema: "include('physical_cells')"
-  custom_cells:
-    description: "Dict of custom cells w/ lef and gds (will need to be more comprehensive at some point)"
-    default: null
-    schema: "map(include('custom_cell'), required=False)"
+  custom_lefs:
+    description: "List of custom cell lef files"
+    default: [] 
+    schema: "list(file())"
+  custom_libs:
+    description: "List of custom cell lib files"
+    default: [] 
+    schema: "list(file())"
+  custom_gds:
+    description: "List of custom cell gds files"
+    default: [] 
+    schema: "list(file())"
 schema_includes:
   view:
     libs: "list(file())"
@@ -37,6 +45,3 @@ schema_includes:
     filler: "list(str(), required=False)"
     tie_high: "list(str(), required=False)"
     tie_low: "list(str(), required=False)"
-  custom_cell:
-    lef: "file()"
-    gds: "file()"
