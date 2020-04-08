@@ -85,6 +85,13 @@ properties:
     description: "List of layer names that should be included in bump routing blockage"
     default: []
     schema: "list(str())"
+  #---------------------------------------------------------------------
+  # Tap Cells 
+  #---------------------------------------------------------------------
+  tap_cell_interval:
+    description: "Tap cell interval. If not provided tap cells will not be included."
+    default: null 
+    schema: "num(min=0.0, required=False)"
 schema_includes:
   bump_array:
     base_bump: "include('bump')"
