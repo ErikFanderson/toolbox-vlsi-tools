@@ -23,7 +23,7 @@ properties:
 schema_includes:
   mode:
     name: "str()"
-    clocks: "list(include('clock'))"
+    clocks: "list(include('clock'), required=False)"
   clock:
     name: "str()"
     period: "num(min=0)"
