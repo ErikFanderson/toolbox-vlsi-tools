@@ -99,23 +99,7 @@ properties:
     description: "List of power strap grid objects."
     default: null
     schema: "include('power_strap_grid', required=False)"
-  #---------------------------------------------------------------------
-  # Sealring 
-  #---------------------------------------------------------------------
-  sealring:
-    description: "For creating sealring in design"
-    default: null
-    schema: "include('sealring', required=False)"
 schema_includes:
-  sealring:
-    edge: "include('sealring_cell')"
-    corner: "include('sealring_cell')"
-  sealring_cell:
-    cell: "str()"
-    bottom_orient: "enum('r0', 'r90', 'r180', 'r270', 'mx', 'my', 'mx90', 'my90')"
-    top_orient: "enum('r0', 'r90', 'r180', 'r270', 'mx', 'my', 'mx90', 'my90')"
-    right_orient: "enum('r0', 'r90', 'r180', 'r270', 'mx', 'my', 'mx90', 'my90')"
-    left_orient: "enum('r0', 'r90', 'r180', 'r270', 'mx', 'my', 'mx90', 'my90')"
   power_strap_grid:
     direction: "enum('horizontal', 'vertical')"
     layer: "str()"
