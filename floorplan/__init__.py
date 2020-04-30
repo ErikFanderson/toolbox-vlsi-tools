@@ -59,8 +59,8 @@ class FloorplanTool(Tool):
     #--------------------------------------------------------------------------
     # Hard macro methods
     #--------------------------------------------------------------------------
-    def generate_macro_arrays(self,
-                              hard_macro_arrays: List[dict]) -> List[HardMacro]:
+    def generate_macro_arrays(self, hard_macro_arrays: List[dict]
+                              ) -> List[HardMacro]:
         """base name should have two {} in them"""
         macros = []
         for macro_array in hard_macro_arrays:
@@ -77,6 +77,7 @@ class FloorplanTool(Tool):
                             place_halo=base_macro.place_halo,
                             route_halo=base_macro.route_halo))
         return macros
+
     #--------------------------------------------------------------------------
 
     #--------------------------------------------------------------------------

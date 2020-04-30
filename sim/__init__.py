@@ -12,6 +12,7 @@
 # Imports - local source
 from toolbox.tool import Tool
 
+
 class SimTool(Tool):
     """Basic simulation tool"""
     pass

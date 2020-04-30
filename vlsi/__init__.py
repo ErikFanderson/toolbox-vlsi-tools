@@ -12,6 +12,7 @@
 # Imports - local source
 from toolbox.tool import Tool
 
+
 class VLSITool(Tool):
     """Basic simulation tool"""
     pass

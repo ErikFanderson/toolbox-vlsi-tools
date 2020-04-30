@@ -12,6 +12,7 @@
 # Imports - local source
 from toolbox.tool import Tool
 
+
 class TechTool(Tool):
     """Basic technology tool"""
     pass
