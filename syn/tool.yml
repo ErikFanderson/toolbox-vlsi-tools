@@ -20,6 +20,10 @@ properties:
     description: "List of constraint modes to be translated into SDC files."
     default: null 
     schema: "list(include('mode'))"
+  flatten:
+    description: "Optionally flatten design while performing synthesis"
+    default: false
+    schema: "bool()"
   preserved_instances:
     description: "List of instances to be preserved during synthesis."
     default: [] 
