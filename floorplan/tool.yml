@@ -25,11 +25,11 @@ properties:
     schema: "num(min=0.0)"
   bottom_margin:
     description: "Margin from bottom of core to IO or die edge (depends on core_margins_by attr)"
-    default: 100 
+    default: 0 
     schema: "num(min=0.0)"
   top_margin:
     description: "Margin from top of core to IO or die edge (depends on core_margins_by attr)"
-    default: 100 
+    default: 0 
     schema: "num(min=0.0)"
   die_size_by_io_height:
     description: "Specifies whether the max or min I/O height is used for die size calculation."
