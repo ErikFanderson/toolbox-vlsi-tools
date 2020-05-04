@@ -17,11 +17,11 @@ properties:
     schema: "num(min=0.0)"
   left_margin:
     description: "Margin from left edge of core to IO or die edge (depends on core_margins_by attr)"
-    default: 100 
+    default: 0 
     schema: "num(min=0.0)"
   right_margin:
     description: "Margin from right edge of core to IO or die edge (depends on core_margins_by attr)"
-    default: 100 
+    default: 0 
     schema: "num(min=0.0)"
   bottom_margin:
     description: "Margin from bottom of core to IO or die edge (depends on core_margins_by attr)"
