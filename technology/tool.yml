@@ -8,6 +8,10 @@ properties:
     description: "Defines process node of technology (e.g. 45, 90, 180, etc...)"
     default: null 
     schema: "int(min=1)"
+  layer_map:
+    description: "Layer map for a given technology"
+    default: null
+    schema: "file()"
   core_site:
     description: "Defines site for core area."
     default: null 
