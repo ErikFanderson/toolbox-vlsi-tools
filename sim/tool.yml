@@ -14,5 +14,5 @@ properties:
     schema: "file(required=False)"
   options:
     description: "Command line options passed directly to executable. Strings are passed raw to binary."
-    default: null 
-    schema: "list(str(), required=False)"
+    default: [] 
+    schema: "list(str())"
